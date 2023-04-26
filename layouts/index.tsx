@@ -7,21 +7,13 @@ export default function Layout ({ title, children }: { title: string, children?:
     return (
         <>
             <Head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{title}</title>
                 <link rel="shortcut icon" href={`${PATH}/favicon.ico`} />
             </Head>
 
-            <header>
-                <h1>{title}</h1>
-            </header>
-
-            <main>
-                {children}
-            </main>
-
-            <footer>
-                <p>version 0.0.0</p>
-            </footer>
+            {children}
         </>
     );
 }

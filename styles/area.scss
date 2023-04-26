@@ -1,0 +1,45 @@
+@import 'piece.scss';
+
+.area {
+    display: flex;
+    border: .008rem solid #000;
+    box-sizing: border-box;
+    align-items: center;
+
+    &:not(:empty) {
+        cursor: default;
+    }
+
+    &.-top {
+        border-top: none;
+    }
+
+    &.-left {
+        border-left: none;
+    }
+
+    &.-bottom {
+        border-bottom: none;
+    }
+
+    &.-right {
+        border-right: none;
+    }
+
+    .board.-winner &.-win {
+        background-color: yellow;
+    }
+
+
+    .board.-X &:empty:hover:after {
+        content: 'X';
+        margin: 0 auto;
+        font-size: 10vw;
+    }
+
+    .board.-O &:empty:hover:after {
+        content: 'O';
+        margin: 0 auto;
+        font-size: 10vw;
+    }
+}

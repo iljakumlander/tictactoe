@@ -13,10 +13,11 @@ Yet another attempt to a game with many names but the same goal
 ## Disclaimer
 Some combination of both research on theory of the game and general technical documentation lookup for setting up an environment was done or was ongoing during the development of this application
 
-```
-
-```
 
 ## Version Log
+### 0.0.1
+Game components set, winning conditions installed, data persist configured
+
+
 ### 0.0.0
 Development environment with deployable build set on Next 13 and React 18

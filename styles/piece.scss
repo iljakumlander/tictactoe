@@ -1,0 +1,13 @@
+.piece {
+    margin: 0 auto;
+    font-size: 10vw;
+
+    &.-X {
+        color: #f00;
+    }
+
+
+    &.-O {
+        color: #00F;
+    }
+}
