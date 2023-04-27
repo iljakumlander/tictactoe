@@ -1,6 +1,5 @@
 .notification {
     pointer-events: none;
-    background-color: #fff;
     border: 1px solid #e5e5e5;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -10,39 +9,29 @@
     margin-bottom: 20px;
     padding: 15px;
     position: fixed;
+    z-index: 1;
 
     top: 10%;
     left: 50%;
     transform: translate(-50%, -100%);
-    background-color: white;
+    background-color: yellow;
     border-radius: 5px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 
     transition: all 1s ease;
     opacity: 0;
 
     &.-ready {
-        background-color: #f5f5f5;
-        border-color: #ddd;
-        color: #333;
         opacity: .5;
         transform: translate(-50%, -100%);
     }
 
     &.-set {
-        background-color: #f5f5f5;
-        border-color: #ddd;
-        color: #333;
         opacity: 1;
-
         transform: translate(-50%, -50%);
     }
 
     &.-gone {
-        background-color: #f5f5f5;
-        border-color: #ddd;
-        color: #333;
         opacity: 0;
         transform: translate(-50%, -100%);
     }

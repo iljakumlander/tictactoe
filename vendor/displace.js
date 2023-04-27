@@ -22,7 +22,7 @@ function displace(WrappedComponent, options) {
 
     static WrappedComponent = WrappedComponent;
 
-    componentWillMount() {
+    UNSAFE_componentWillMount () {
       this.container = (() => {
         if (!options.renderTo) {
           var result = document.createElement('div');

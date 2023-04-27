@@ -1,13 +1,18 @@
+@import 'pieces';
+
 .piece {
-    margin: 0 auto;
-    font-size: 10vw;
+    position: relative;
+    font-size: 0;
+    width: 100%;
+    height: 100%;
+    --x: red;
+    --o: blue;
 
     &.-X {
-        color: #f00;
+        @include x;
     }
 
-
     &.-O {
-        color: #00F;
+        @include o;
     }
 }

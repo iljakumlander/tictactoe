@@ -20,9 +20,16 @@ export default function Layout ({ title, children }: { title: string, children?:
                 <link rel="shortcut icon" href={`${PATH}/favicon.ico`} />
             </Head>
             
-            <header>
-                Turn: {name} ({turn})
-            </header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href={PATH || '/'}>Game</a>
+                    </li>
+                    <li>
+                        <a href={PATH && PATH + '/scoreboard/' || '/scoreboard/'}>Scores</a>
+                    </li>
+                </ul>
+            </nav>
 
             {children}
         </>

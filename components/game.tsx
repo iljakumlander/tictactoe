@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { useGameContext, positions, combinations } from '../context/game';
 
@@ -9,7 +9,7 @@ import Notification from './notification';
 
 export default function Game (): JSX.Element {
     const { state, dispatch } = useGameContext();
-    const { x, o, turn, winner, tie, line } = state;
+    const { x, o, names, player, turn, winner, line, tie } = state;
     const board = useRef(null);
     const focus = useRef([]);
     const [lock, setLock] = useState<boolean>(true);
@@ -68,6 +68,13 @@ export default function Game (): JSX.Element {
         
         focus.current[4]?.focus();
     };
+
+    useEffect((): void => {
+        if (!names) {
+            return;
+        }
+        notify(`${names[player]} with ${turn}`);
+    }, [player]);
 
     return (
         <Board reference={board} turn={turn} winner={winner} focus={focused} input={input}>

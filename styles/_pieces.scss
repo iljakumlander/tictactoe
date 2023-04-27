@@ -1,0 +1,74 @@
+@import 'effects';
+
+@mixin pseudo {
+    --scale: 1;
+    --opacity: 1;
+    --width: 4px;
+
+    animation: box-flicker-b .3s infinite;
+
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: var(--opacity);
+    transition: all .3s ease;
+
+    .board.-winner & {
+        --scale: .8;
+        --opacity: .9;
+    }
+
+    .board.-winner .-win & {
+        --scale: 1.2;
+        --width: 8px;
+        --opacity: 1;
+    }
+}
+
+@mixin x {
+    color: var(--x);
+
+    &::before,
+    &::after {
+        @include pseudo;
+        width: 1px;
+        height: 90%;
+        top: 5%;
+        bottom: 5%;
+        left: calc(50% - var(--width));
+        border: var(--width) solid var(--x);
+        background: var(--x);
+        box-sizing: border-box;
+    }
+    
+    &::before {
+        transform: rotate(45deg) scale(var(--scale));
+    }
+
+    &::after {
+        transform: rotate(-45deg)  scale(var(--scale));
+    }
+}
+
+@mixin o {
+    color: var(--o);
+
+    &::before {
+        @include pseudo;
+        
+        border: calc(var(--width) * 2) solid var(--o);
+        border-radius: 50%;
+        top: 10%;
+        right: 10%;
+        bottom: 10%;
+        left: 10%;
+        height: calc(80% - var(--width) * 4);
+        width: calc(80% - var(--width) * 4);
+
+        transform: scale(var(--scale));
+    }
+}

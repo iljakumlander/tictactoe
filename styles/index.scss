@@ -1,19 +1,71 @@
 @import 'board.scss';
 @import 'dialog.scss';
 @import 'notification.scss';
+@import 'leaderboard.scss';
+@import 'fonts';
+@import 'effects';
 
 html, 
 body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Pixel, Monaco, monospace;
+    font-size: 20px;
+    font-smooth: never;
+    -webkit-font-smoothing : none;
+    background: #333;
+    color: #CCC;
 }
 
 body {
     display: flex;
     align-items: center;
+
+    @include crt;
+    animation: text-flicker-a 3s infinite;
+}
+
+a {
+    color: yellow;
 }
 
 #__next {
     flex: 1
+}
+
+input[type="text"],
+button {
+    font-size: 20px;
+    font-family: Pixel, Monaco, monospace;
+    -webkit-appearance: none;
+    appearance: none;
+    font-smooth: never;
+    -webkit-font-smoothing : none;
+    animation: text-flicker-b 3s infinite;
+}
+
+button {
+    display: block;
+    margin: 20px auto 0;
+}
+
+nav {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 40px;
+        margin: 0 auto;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }

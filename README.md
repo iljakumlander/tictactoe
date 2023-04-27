@@ -36,6 +36,9 @@ INSTALL_PATH=/tictactoe
 ```
 
 ## Version Log
+### 0.0.4
+Scoreboard and visal tweaking
+
 ### 0.0.3
 Game input and styling tweaks, installation instructions
 

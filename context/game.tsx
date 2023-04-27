@@ -1,17 +1,17 @@
 import React, { createContext, useContext, useMemo, useEffect, useReducer, Dispatch } from "react";
 
-interface Scores {
+export interface Scores {
     [key: string]: Player;
 }
 
-interface Player {
+export interface Player {
     wins: number;
     ties: number;
-    looses: number;
+    losses: number;
     total: number;
 }
 
-interface Game {
+export interface Game {
     names?: string[];
     player?: number;
     starts?: number,
@@ -24,7 +24,7 @@ interface Game {
     leaderboard?: Scores;
 };
 
-interface Action {
+export interface Action {
     type: string;
     value?: number | string | number[] | string[] | boolean | Game | Player;
 }
@@ -38,7 +38,7 @@ export const newGame: Game = {
 export const newPlayer: Player = {
     wins: 0,
     ties: 0,
-    looses: 0,
+    losses: 0,
     total: 0,
 };
 
@@ -100,7 +100,7 @@ export function GamesReducer (state: Game, action: Action): Game {
 
                     names.map(name => leaderboard[name] = {
                         ...leaderboard[name],
-                        [name === names[player] ? 'wins' : 'looses']: leaderboard[name][name === names[player]  ? 'wins' : 'looses'] + 1,
+                        [name === names[player] ? 'wins' : 'losses']: leaderboard[name][name === names[player]  ? 'wins' : 'losses'] + 1,
                         total: leaderboard[name].total + 1,
                     });
                 }

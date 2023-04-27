@@ -1,0 +1,13 @@
+.leaderboard {
+    margin: 0 auto;
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+
+        @media screen and (max-width: 650px) {
+            padding: 5px;
+            font-size: 14px;
+        }
+    }
+}

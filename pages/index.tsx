@@ -36,7 +36,7 @@ export default function Index (): JSX.Element {
         <Layout title="Knots and crosses">
             {winner && (
                 <Dialog title="Winner">
-                    <h2>{names[player]} with {winner} wins!</h2>
+                    <h2>{names[player]} wins!</h2>
                     <p>
                         <button onClick={() => newGame()}>Play again</button>
                     </p>

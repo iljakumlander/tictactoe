@@ -2,9 +2,10 @@
 
 .area {
     display: flex;
-    border: .008rem solid #000;
+    border: 2px solid silver;
     box-sizing: border-box;
     align-items: center;
+    position: relative;
 
     &:not(:empty) {
         cursor: default;
@@ -26,22 +27,18 @@
         border-right: none;
     }
 
-    .board.-winner &.-win {
-        background-color: yellow;
+
+    .board.-X.-keydown:has(:focus) &:empty:focus,
+    .board.-X.-click &:empty:hover {
+        --x: silver;
+        
+        @include x;
     }
 
+    .board.-O.-keydown:has(:focus) &:empty:focus,
+    .board.-O.-click &:empty:hover {
+        --o: silver;
 
-    .board.-X.-keydown:has(:focus) &:empty:focus:after,
-    .board.-X.-click &:empty:hover:after {
-        content: 'X';
-        margin: 0 auto;
-        font-size: 10vw;
-    }
-
-    .board.-O.-keydown:has(:focus) &:empty:focus:after,
-    .board.-O.-click &:empty:hover:after {
-        content: 'O';
-        margin: 0 auto;
-        font-size: 10vw;
+        @include o;
     }
 }
