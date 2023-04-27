@@ -13,8 +13,32 @@ Yet another attempt to a game with many names but the same goal
 ## Disclaimer
 Some combination of both research on theory of the game and general technical documentation lookup for setting up an environment was done or was ongoing during the development of this application
 
+## Install
+```sh
+npm install
+```
+
+## Run
+```sh
+npm run start
+```
+
+## Build
+```sh
+npm run build
+```
+
+### Deploy path `(optional)`
+Create `.env` file and define deploy path for an environment in case you deploy in server's subdirectory
+```sh
+DEPLOY=TRUE
+INSTALL_PATH=/tictactoe
+```
 
 ## Version Log
+### 0.0.3
+Game input and styling tweaks, installation instructions
+
 ### 0.0.2
 Prompting names, keeping scores and game logic set
 

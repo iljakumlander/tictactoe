@@ -31,15 +31,15 @@
     }
 
 
-    .board.-X:has(:focus) &:empty:focus:after,
-    .board.-X:not(:has(:focus)) &:empty:hover:after {
+    .board.-X.-keydown:has(:focus) &:empty:focus:after,
+    .board.-X.-click &:empty:hover:after {
         content: 'X';
         margin: 0 auto;
         font-size: 10vw;
     }
 
-    .board.-O:has(:focus) &:empty:focus:after,
-    .board.-O:not(:has(:focus)) &:empty:hover:after {
+    .board.-O.-keydown:has(:focus) &:empty:focus:after,
+    .board.-O.-click &:empty:hover:after {
         content: 'O';
         margin: 0 auto;
         font-size: 10vw;

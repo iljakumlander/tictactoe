@@ -14,12 +14,10 @@ export default function Game (): JSX.Element {
     const focus = useRef([]);
     const [lock, setLock] = useState<boolean>(true);
     const [notification, setNotification] = useState<JSX.Element | null>(null);
+    const [input, setInput] = useState<string>('none');
 
-    const notify = (message: string) => setNotification(<Notification message={message} expire={Date.now()} />);
-
-    const click = (position: number): void => {
-        
-        if (tie || winner || x.includes(position) || o.includes(position)) {
+    const react = (area: number): void => {
+        if (tie || winner || x.includes(area) || o.includes(area)) {
             notify('Invalid move');
 
             return;
@@ -27,15 +25,23 @@ export default function Game (): JSX.Element {
 
         dispatch({
             type: `Set`,
-            value: position,
+            value: area,
         });
     };
 
+    const notify = (message: string) => setNotification(<Notification message={message} expire={Date.now()} />);
+
+    const click = (event: React.MouseEvent, area: number): void => {
+        setInput(event.type);
+        react(area);
+    };
+
     const press = (event: React.KeyboardEvent, area: number): void => {
+        setInput(event.type);
         setLock(false);
         
         if (event.key === 'Enter' || event.key === ' ') {
-            click(area);
+            react(area);
         }
 
         if (event.key === 'ArrowUp') {
@@ -64,10 +70,10 @@ export default function Game (): JSX.Element {
     };
 
     return (
-        <Board reference={board} turn={turn} winner={winner} focus={focused}>
+        <Board reference={board} turn={turn} winner={winner} focus={focused} input={input}>
             {notification}
             {positions.map((position, index) => (
-                <Area reference={(el) => (focus.current[index] = el)} key={index} position={position} win={line?.includes(index)} onClick={() => click(index)} onKeyDown={event => press(event, index)}>
+                <Area reference={(el) => (focus.current[index] = el)} key={index} position={position} win={line?.includes(index)} onClick={event => click(event, index)} onKeyDown={event => press(event, index)}>
                     <Piece occupied={x.includes(index) && 'X' || o.includes(index) && 'O' || null}  />
                 </Area>
             ))}
