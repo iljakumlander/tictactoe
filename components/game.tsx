@@ -1,77 +1,73 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
-import { useGameContext } from '../context/game';
+import { useGameContext, positions, combinations } from '../context/game';
 
 import Board from './board';
 import Area from './area';
 import Piece from './piece';
-
-const positions = [
-    "top left",
-    "top center",
-    "top right",
-    "middle left",
-    "middle center",
-    "middle right",
-    "bottom left",
-    "bottom center",
-    "bottom right",
-]
-
-const combinations = [
-    [0, 1, 2], // top row
-    [3, 4, 5], // middle row
-    [6, 7, 8], // bottom row
-    [0, 3, 6], // left column
-    [1, 4, 7], // center column
-    [2, 5, 8], // right column
-    [0, 4, 8], // top left to bottom right
-    [2, 4, 6], // top right to bottom left
-];
-
+import Notification from './notification';
 
 export default function Game (): JSX.Element {
     const { state, dispatch } = useGameContext();
-    const { x, o, turn, winner, draw, line } = state;
+    const { x, o, turn, winner, tie, line } = state;
+    const board = useRef(null);
+    const focus = useRef([]);
+    const [lock, setLock] = useState<boolean>(true);
+    const [notification, setNotification] = useState<JSX.Element | null>(null);
+
+    const notify = (message: string) => setNotification(<Notification message={message} expire={Date.now()} />);
 
     const click = (position: number): void => {
-        if (winner || x.includes(position) || o.includes(position)) {
+        
+        if (tie || winner || x.includes(position) || o.includes(position)) {
+            notify('Invalid move');
+
             return;
         }
 
         dispatch({
-            type: `Set ${turn}`,
-            value: position
+            type: `Set`,
+            value: position,
         });
+    };
 
-        dispatch({
-            type: `Next Turn`,
-        });
+    const press = (event: React.KeyboardEvent, area: number): void => {
+        setLock(false);
+        
+        if (event.key === 'Enter' || event.key === ' ') {
+            click(area);
+        }
 
-        combinations.some((combination, index) => {
-            const match = combination.every(value => [...(turn === 'X' ? x : o), position].includes(value));
+        if (event.key === 'ArrowUp') {
+            focus.current[[0, 1, 2].includes(area) ? area + 6 : area - 3]?.focus();
+        }
 
-            if (match) {
-                dispatch({
-                    type: 'Set Line',
-                    value: combinations[index],
-                });
+        if (event.key === 'ArrowRight') {
+            focus.current[[2, 5, 8].includes(area) ? area - 2 : area + 1]?.focus();
+        }
 
-                dispatch({
-                    type: 'Set Winner',
-                    value: turn,
-                });
-            }
+        if (event.key === 'ArrowDown') {
+            focus.current[[6, 7, 8].includes(area) ? area - 6 : area + 3]?.focus();
+        }
 
-            return match;
-            
-        });
-    }
+        if (event.key === 'ArrowLeft') {
+            focus.current[[0, 3, 6].includes(area) ? area + 2 : area - 1]?.focus();
+        }
+    };
+
+    const focused = () => {
+        if (!lock) {
+            return;
+        }
+        
+        focus.current[4]?.focus();
+    };
 
     return (
-        <Board turn={turn} winner={winner}>
+        <Board reference={board} turn={turn} winner={winner} focus={focused}>
+            {notification}
             {positions.map((position, index) => (
-                <Area key={index} position={position} win={line?.includes(index)} onClick={() => click(index)}>
+                <Area reference={(el) => (focus.current[index] = el)} key={index} position={position} win={line?.includes(index)} onClick={() => click(index)} onKeyDown={event => press(event, index)}>
                     <Piece occupied={x.includes(index) && 'X' || o.includes(index) && 'O' || null}  />
                 </Area>
             ))}

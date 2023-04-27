@@ -31,13 +31,15 @@
     }
 
 
-    .board.-X &:empty:hover:after {
+    .board.-X:has(:focus) &:empty:focus:after,
+    .board.-X:not(:has(:focus)) &:empty:hover:after {
         content: 'X';
         margin: 0 auto;
         font-size: 10vw;
     }
 
-    .board.-O &:empty:hover:after {
+    .board.-O:has(:focus) &:empty:focus:after,
+    .board.-O:not(:has(:focus)) &:empty:hover:after {
         content: 'O';
         margin: 0 auto;
         font-size: 10vw;

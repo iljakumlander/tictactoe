@@ -15,6 +15,9 @@ Some combination of both research on theory of the game and general technical do
 
 
 ## Version Log
+### 0.0.2
+Prompting names, keeping scores and game logic set
+
 ### 0.0.1
 Game components set, winning conditions installed, data persist configured
 

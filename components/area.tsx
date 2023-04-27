@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Area ({ position, onClick, win, children }: { position: string, win?: boolean, onClick?: (event: React.MouseEvent) => void, children?: React.ReactNode }): JSX.Element {
+export default function Area ({ position, onClick, onKeyDown, win, reference, children }: { position: string, win?: boolean, onKeyDown?: React.KeyboardEventHandler, onClick?: React.MouseEventHandler, reference: React.Ref<HTMLDivElement>, children?: React.ReactNode }): JSX.Element {
     return (
-        <div className={`area${position.split(' ').map(place => ` -${place}`).join('')}${win && ' -win'}`} onClick={onClick}>   
+        <div ref={reference} tabIndex={0} className={`area${position.split(' ').map(place => ` -${place}`).join('')}${win ? ' -win' : ''}`} onClick={onClick} onKeyDown={onKeyDown}>   
             {children}
         </div>
     );
