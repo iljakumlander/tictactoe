@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { useGameContext } from '../context/game';
 
@@ -7,18 +8,16 @@ import Prompt from '../components/prompt';
 import Dialog from '../components/dialog';
 import Game from '../components/game';
 
+const PATH = process.env.INSTALL_PATH || '';
+
 export default function Index (): JSX.Element {
     const { state, dispatch } = useGameContext();
     const { names, player, tie, winner } = state;
     const [prompt, setPrompt] = useState<boolean>(false);
+    const { push } = useRouter();
 
-    const newGame = () => dispatch({
-        type: 'New Game',
-    });
-
-    const newPlayers = (values: string[]) => dispatch({
-        type: 'Set Names',
-        value: values,
+    const reset = () => dispatch({
+        type: 'Restart Game',
     });
 
     useEffect(() => {
@@ -34,29 +33,20 @@ export default function Index (): JSX.Element {
 
     return (
         <Layout title="Knots and crosses">
-            {winner && (
-                <Dialog title="Winner">
-                    <h2><em>{names[player]} wins!</em></h2>
+            <section>
+                <h2>Knots and Crosses!</h2>
+                {names && (
                     <p>
-                        <button onClick={() => newGame()}>Play again</button>
+                        <a href={names[1] === '' ? `${PATH}/single/` : `${PATH}/`}>Continue</a>
                     </p>
-                </Dialog>
-            )}
-
-            {tie && (
-                <Dialog title="Tie">
-                    <h2>A Tie!</h2>
-                    <p>
-                        <button onClick={() => newGame()}>Play again</button>
-                    </p>
-                </Dialog>
-            )}
-
-            <Game />
-                
-            {prompt && (
-                <Prompt onSubmit={newPlayers} title="Player name" action="Play" />
-            )}
+                )}
+                <p>
+                    <a onClick={() => reset()} href={`${PATH}/single/`}>1 Player</a>
+                </p>
+                <p>
+                    <a onClick={() => reset()} href={`${PATH}/local/`}>2 Players</a>
+                </p>
+            </section>
         </Layout>
     )
 }

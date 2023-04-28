@@ -23,7 +23,7 @@ export default function Layout ({ title, children }: { title: string, children?:
             <nav>
                 <ul>
                     <li>
-                        <a href={PATH || '/'}>Game</a>
+                        <a href={PATH || '/'}>Menu</a>
                     </li>
                     <li>
                         <a href={PATH && PATH + '/scoreboard/' || '/scoreboard/'}>Scores</a>

@@ -36,6 +36,9 @@ INSTALL_PATH=/tictactoe
 ```
 
 ## Version Log
+### 0.0.6
+Game modes for 1 or 2 players
+
 ### 0.0.5
 Artificial intelligence for single player game, style tweaks
 

@@ -79,6 +79,12 @@ export function GamesReducer (state: Game, action: Action): Game {
                 leaderboard,
             };
 
+        case "Restart Game":
+            return {
+                ...newGame,
+                leaderboard,
+            };
+
         case "Set Game":
             return action.value as Game;
 
