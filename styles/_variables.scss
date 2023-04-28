@@ -1,0 +1,42 @@
+:root {
+    --border-width: 4px;
+}
+
+@mixin equal-margin {
+    margin: 10px 0 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+@mixin appearance {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@mixin borders {
+    border-top: var(--border-width) solid #eee;
+    border-right: var(--border-width) solid #888;
+    border-bottom: var(--border-width) solid #888;
+    border-left: var(--border-width) solid #eee;
+}
+
+@mixin borders-inverted {
+    border-top: var(--border-width) solid #888;
+    border-right: var(--border-width) solid #eee;
+    border-bottom: var(--border-width) solid #eee;
+    border-left: var(--border-width) solid #888;
+}
+
+@mixin borders-grooved {
+    border-width: var(--border-width);
+    border-style: groove;
+    border-color: #eee;
+}
+
+@keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }

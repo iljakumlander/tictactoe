@@ -1,14 +1,33 @@
 @import 'effects';
+@import 'overlay';
 
 .dialog {
+    @include borders;
+    @include crt;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: gray;
-    padding: 20px;
+    background-color: #BBB;
+    padding: 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     opacity: 10;
+    text-align: center;
+    user-select: none;
 
-    @include crt;
+    @media (max-aspect-ratio: 3/2) {
+        min-width: 80vw;
+        min-height: 40vh;
+        transform: translate(-50%, 0);
+        bottom: 10%;
+        top: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    @media (max-aspect-ratio: 2/3) {
+        min-height: 30vh;
+    }
 }

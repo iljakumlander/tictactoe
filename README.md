@@ -36,6 +36,9 @@ INSTALL_PATH=/tictactoe
 ```
 
 ## Version Log
+### 0.0.5
+Artificial intelligence for single player game, style tweaks
+
 ### 0.0.4
 Scoreboard and visal tweaking
 

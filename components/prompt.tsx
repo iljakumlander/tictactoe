@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Dialog from './dialog';
 
-export default function Prompt ({ onSubmit, action, title }: { onSubmit: (values: string[]) => void, action?: string, title?: string }): JSX.Element {
+export default function Prompt ({ onSubmit, action, single, title }: { onSubmit: (values: string[]) => void, action?: string, single?: boolean, title?: string }): JSX.Element {
     const [values, setValues] = useState(['', '']);
 
     const submit = (event) => {
       event.preventDefault();
 
-      if (values.find(value => value.trim() === '') === '') {
+      if (single && values[0].trim() === '' || !single && values.find(value => value.trim() === '') === '') {
+          console.log('values', values)
           return;
       }
 
@@ -23,13 +24,15 @@ export default function Prompt ({ onSubmit, action, title }: { onSubmit: (values
               </legend>
               <input placeholder="Name" type="text" value={values[0]} onChange={event => setValues([event.target.value, values[1]])} />
             </fieldset>
-            <fieldset>
+            {!single && <fieldset>
               <legend>
                 <label>Player 2</label>
               </legend>
               <input placeholder="Name" type="text" value={values[1]} onChange={event => setValues([values[0], event.target.value])} />
-            </fieldset>
+            </fieldset>}
+            <p>
             <button type="submit">{action || 'Submit'}</button>
+            </p>
         </form>
         </Dialog>
     )

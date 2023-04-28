@@ -15,15 +15,15 @@
     bottom: 0;
     left: 0;
     opacity: var(--opacity);
-    transition: all .3s ease;
+    transition: all .15s ease;
 
     .board.-winner & {
-        --scale: .8;
+        --scale: .9;
         --opacity: .9;
     }
 
     .board.-winner .-win & {
-        --scale: 1.2;
+        --scale: 1.1;
         --width: 8px;
         --opacity: 1;
     }
@@ -47,10 +47,12 @@
     
     &::before {
         transform: rotate(45deg) scale(var(--scale));
+        animation: box-flicker-b .3s infinite, cross-flicker-b 2s infinite;
     }
 
     &::after {
         transform: rotate(-45deg)  scale(var(--scale));
+        animation: box-flicker-b .3s infinite, cross-flicker-a 2s infinite;
     }
 }
 

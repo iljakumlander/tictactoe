@@ -6,6 +6,7 @@ import Layout from '../layouts';
 import Prompt from '../components/prompt';
 import Dialog from '../components/dialog';
 import Game from '../components/game';
+import Computer from '../modules/computer';
 
 export default function Index (): JSX.Element {
     const { state, dispatch } = useGameContext();
@@ -36,7 +37,7 @@ export default function Index (): JSX.Element {
         <Layout title="Knots and crosses">
             {winner && (
                 <Dialog title="Winner">
-                    <h2><em>{names[player]} wins!</em></h2>
+                    <h2>{names[player] === '' ? (<em>Computer</em>) : names[player]} wins!</h2>
                     <p>
                         <button onClick={() => newGame()}>Play again</button>
                     </p>
@@ -52,10 +53,12 @@ export default function Index (): JSX.Element {
                 </Dialog>
             )}
 
+            <Computer />
+
             <Game />
                 
             {prompt && (
-                <Prompt onSubmit={newPlayers} title="Player name" action="Play" />
+                <Prompt onSubmit={newPlayers} title="Player name" single={true} action="Play" />
             )}
         </Layout>
     )

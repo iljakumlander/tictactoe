@@ -24,7 +24,7 @@ export default function Scoreboard (): JSX.Element {
                 <tbody>
                     {leaderboard && Object.entries(leaderboard).map(([name, player]: [string, Player], index) => (
                         <tr key={index}>
-                            <td>{name}</td>
+                            <td>{name === '' ? (<em>Computer</em>) : name}</td>
                             <td>{player.wins}</td>
                             <td>{player.ties}</td>
                             <td>{player.losses}</td>

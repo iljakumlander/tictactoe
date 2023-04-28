@@ -6,6 +6,7 @@
     box-sizing: border-box;
     align-items: center;
     position: relative;
+    cursor: pointer;
 
     &:not(:empty) {
         cursor: default;

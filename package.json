@@ -1,6 +1,6 @@
 {
   "name": "tictactoe",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Yet another attempt to a game with many names but the same goal",
   "main": "index.js",
   "scripts": {

@@ -11,6 +11,7 @@
         z-index: 2;
         background-size: 100% 2px, 3px 100%;
         pointer-events: none;
+        animation: blur 15s infinite;
     }
     
     &::after {
@@ -25,7 +26,55 @@
         opacity: 0;
         z-index: 2;
         pointer-events: none;
-        animation: flicker 0.15s infinite;
+        animation: flicker .15s infinite;
+    }
+}
+
+@keyframes blur {
+    0% {
+        backdrop-filter: blur(0);
+    }
+    5% {
+        backdrop-filter: blur(2px);
+    }
+    6% {
+        backdrop-filter: blur(0);
+    }
+    10% {
+        backdrop-filter: blur(0);
+    }
+    15% {
+        backdrop-filter: blur(0);
+    }
+    20% {
+        backdrop-filter: blur(3px);
+    }
+    25% {
+        backdrop-filter: blur(0);
+    }
+    90% {
+        backdrop-filter: blur(0);
+    }
+    92% {
+        backdrop-filter: blur(3px);
+    }
+    94% {
+        backdrop-filter: blur(0);
+    }
+    95% {
+        backdrop-filter: blur(2px);
+    }
+    96% {
+        backdrop-filter: blur(0);
+    }
+    97% {
+        backdrop-filter: blur(0);
+    }
+    98% {
+        backdrop-filter: blur(0);
+    }
+    100% {
+        backdrop-filter: blur(0);
     }
 }
 
@@ -181,6 +230,7 @@
 
 @keyframes box-flicker-b {
     0% {
+        filter: blur(2px);
         box-shadow: 0.4389924193300864px 0 1px rgba(0,30,255,0.5), -0.4389924193300864px 0 1px rgba(255,0,80,0.3), 0 0 3px;
     }
     5% {
@@ -242,5 +292,26 @@
     }
     100% {
         box-shadow: 2.6208764473832513px 0 1px rgba(0,30,255,0.5), -2.6208764473832513px 0 1px rgba(255,0,80,0.3), 0 0 3px;
+    }
+}
+
+@keyframes cross-flicker-a {
+    0% {
+        z-index: 1;
+    }
+    50% {
+        z-index: -1;
+    }
+}
+
+@keyframes cross-flicker-b {
+    0% {
+        z-index: 1;
+    }
+    33% {
+        z-index: -1;
+    }
+    66% {
+        z-index: 0;
     }
 }

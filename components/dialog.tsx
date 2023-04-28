@@ -3,7 +3,7 @@ import AriaModal from '../vendor/react-aria-modal';
 
 export default function Dialog ({ title, focus, children }: { title: string, focus?: string, children?: React.ReactNode }): JSX.Element {
     return (
-        <AriaModal titleText={title} initialFocus={focus}>
+        <AriaModal underlayClickExits={false} underlayClass="overlay" underlayStyle={{}} titleText={title} initialFocus={focus}>
             <div className="dialog">
                 {children}
             </div>

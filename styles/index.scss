@@ -1,16 +1,22 @@
-@import 'board.scss';
-@import 'dialog.scss';
-@import 'notification.scss';
-@import 'leaderboard.scss';
 @import 'fonts';
+@import 'variables';
+@import 'notification.scss';
+@import 'form.scss';
+@import 'dialog.scss';
+@import 'board.scss';
+@import 'leaderboard.scss';
 @import 'effects';
 
 html, 
 body {
+    @include font;
+
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Pixel, Monaco, monospace;
+
+    overflow: hidden;
+
     font-size: 20px;
     font-smooth: never;
     -webkit-font-smoothing : none;
@@ -28,40 +34,68 @@ body {
 
 a {
     color: yellow;
+    display: inline-block;
+    padding: 2px 10px 4px;
+
+    &:focus,
+    &:hover {
+        color: black;
+        background: yellow;
+        text-decoration: none;
+    }
 }
 
 #__next {
     flex: 1
 }
 
-input[type="text"],
-button {
-    font-size: 20px;
-    font-family: Pixel, Monaco, monospace;
-    -webkit-appearance: none;
-    appearance: none;
-    font-smooth: never;
-    -webkit-font-smoothing : none;
-    animation: text-flicker-b 3s infinite;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    @include equal-margin;
 }
 
-button {
-    display: block;
-    margin: 20px auto 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
 }
 
 nav {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    display: flex;
+    align-items: flex-start;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: #8888;
+
+    @media (max-aspect-ratio: 3/2) {
+        top: auto;
+        justify-content: space-between;
+        bottom: 0;
+    }
 
     ul {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
-        gap: 40px;
         margin: 0 auto;
+        width: 100%;
+
+        @media (max-aspect-ratio: 3/2) {
+            top: auto;
+            justify-content: space-between;
+            bottom: 0;
+        }
 
         li {
             margin: 0;

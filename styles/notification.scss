@@ -1,3 +1,5 @@
+@import 'effects';
+
 .notification {
     pointer-events: none;
     border: 1px solid #e5e5e5;
@@ -18,21 +20,24 @@
     border-radius: 5px;
     padding: 20px;
 
-    transition: all 1s ease;
+    transition: all 100ms ease;
     opacity: 0;
 
     &.-ready {
         opacity: .5;
         transform: translate(-50%, -100%);
+        animation: blink 300ms steps(5, start) infinite;
     }
 
     &.-set {
         opacity: 1;
         transform: translate(-50%, -50%);
+        animation: blink 1s steps(5, start) infinite;
     }
 
     &.-gone {
         opacity: 0;
         transform: translate(-50%, -100%);
+        animation: blink 300ms steps(5, start) infinite;
     }
 }

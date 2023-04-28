@@ -1,0 +1,71 @@
+@import 'variables';
+
+input[type="text"],
+button {
+    @include font;
+    @include appearance;
+
+    font-size: 20px;
+
+    animation: text-flicker-b 3s infinite;
+
+    &:active {
+        font-weight: bold;
+    }
+}
+
+input[type="text"] {
+    @include borders-inverted;
+
+    display: block;
+    padding: 10px 20px;
+    margin: 0 auto;
+    background: #EEE;
+    color: black;
+}
+
+button {
+    @include borders;
+
+    display: inline-block;
+    box-sizing: border-box;
+    background: silver;
+    color: black;
+    padding: 10px 20px;
+
+    &:active {
+        @include borders-inverted;
+
+        padding: calc(10px + var(--border-width)) calc(20px - var(--border-width)) calc(10px - var(--border-width)) calc(20px + var(--border-width));
+    }
+
+    &:focus {
+        outline: var(--border-width) solid yellow;
+        outline-offset: var(--border-width);
+    }
+}
+
+fieldset {
+    @include borders-grooved;
+    @include appearance;
+    border-color: #FFF;
+    margin: 0 10px;
+    padding: 10px 20px 20px;
+
+    legend {
+        color: #FFF;
+        padding: 0 10px;
+        margin: 0;
+    }
+    
+
+    &:focus-within {
+        border-color: yellow;
+        border-style: solid;
+        outline: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+}
