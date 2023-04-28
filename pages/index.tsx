@@ -37,7 +37,7 @@ export default function Index (): JSX.Element {
                 <h2>Knots and Crosses!</h2>
                 {names && (
                     <p>
-                        <a href={names[1] === '' ? `${PATH}/single/` : `${PATH}/`}>Continue</a>
+                        <a href={names[1] === '' ? `${PATH}/single/` : `${PATH}/local/`}>Continue</a>
                     </p>
                 )}
                 <p>
