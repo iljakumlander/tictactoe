@@ -6,7 +6,7 @@
     @include crt;
 
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #BBB;
@@ -15,6 +15,10 @@
     opacity: 10;
     text-align: center;
     user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px 40px;
 
     @media (max-aspect-ratio: 3/2) {
         min-width: 80vw;
@@ -22,12 +26,11 @@
         transform: translate(-50%, 0);
         bottom: 10%;
         top: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        padding: 0;;
     }
 
     @media (max-aspect-ratio: 2/3) {
         min-height: 30vh;
+        padding: 0;
     }
 }
