@@ -2,11 +2,11 @@
 Yet another attempt to a game with many names but the same goal
 
 ## Goals
-1. Present as a ReactJS application that will have an initial page to input players' names and a button to start the game
-2. Present the game board UI with some simple, CSS/sass layout (X - red, O - blue)
-3. Store current positions in the local state, making use of useState()
-4. Store history of all games using global state useContext()
-5. Use React Router to create navigation from game board to scoreboard and vice-versa
+1. Presents as a ReactJS application that will have an initial page to input players' names and a button to start the game
+2. Presents the game board UI with some simple, CSS/sass layout (X - red, O - blue)
+3. Stores current positions in the local state, making use of useState()
+4. Stores history of all games using global state useContext()
+5. Uses React Router to create navigation from game board to scoreboard and vice-versa
 6. Checks history when playing a new game. If the same players have played before, defines the previous winner as Player 1 (as convention X - should start the game) for the next round.
 7. Provides README.md file with the steps to run the app (present document).
 
@@ -36,6 +36,9 @@ INSTALL_PATH=/tictactoe
 ```
 
 ## Version Log
+### 0.0.6
+Remote mode! Experimental multiplayer is on production testing stage
+
 ### 0.0.6
 Game modes for 1 or 2 players
 

@@ -22,6 +22,7 @@ export interface Game {
     line?: number[];
     tie?: boolean;
     leaderboard?: Scores;
+    remote?: string;
 };
 
 export interface Action {
@@ -76,6 +77,17 @@ export function GamesReducer (state: Game, action: Action): Game {
                 starts: state.starts,
                 player: state.starts,
                 names: state.names,
+                remote: state.remote,
+                leaderboard,
+            };
+
+        case "New Remote Game":
+            return {
+                ...newGame,
+                starts: action.value as number,
+                player: action.value as number,
+                names: state.names,
+                remote: state.remote,
                 leaderboard,
             };
 
@@ -83,6 +95,18 @@ export function GamesReducer (state: Game, action: Action): Game {
             return {
                 ...newGame,
                 leaderboard,
+            };
+
+        case "Set Remote":
+            return {
+                ...state,
+                remote: action.value as string,
+            };
+
+        case "Remove Remote":
+            return {
+                ...state,
+                remote: undefined,
             };
 
         case "Set Game":

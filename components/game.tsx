@@ -7,7 +7,7 @@ import Area from './area';
 import Piece from './piece';
 import Notification from './notification';
 
-export default function Game (): JSX.Element {
+export default function Game ({ interceptor }: { interceptor?: (area: number) => void }): JSX.Element {
     const { state, dispatch } = useGameContext();
     const { x, o, turn, winner, line, tie } = state;
     const board = useRef(null);
@@ -17,6 +17,12 @@ export default function Game (): JSX.Element {
     const [input, setInput] = useState<string>('none');
 
     const react = (area: number): void => {
+        if (typeof interceptor === 'function') {
+            interceptor(area);
+
+            return;
+        }
+
         if (tie || winner || x.includes(area) || o.includes(area)) {
             notify('Invalid move');
 
