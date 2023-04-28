@@ -15,14 +15,15 @@
 
     body:has(div:not([class]):not([id])) & {
       transform: translateY(20%) scale(.8);
-
-      @media (max-aspect-ratio: 2/3) {
-        max-width: 80vw;
-        transform: translateY(-50%) scale(.8);
+      
+      @media (max-aspect-ratio: 3/2) {
+        transform: translateY(-30%) scale(.5);
+        top: 0;
       }
 
       @media (max-aspect-ratio: 2/3) {
-          transform: translateY(-50%) scale(1);
+        max-width: 80vw;
+        transform: translateY(-50%) scale(1);
       }
     }
   }
