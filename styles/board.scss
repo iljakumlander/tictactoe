@@ -13,8 +13,19 @@
     transition: all 150ms ease-in-out;
     transform: scale(1);
 
+    @media (min-aspect-ratio: 1/1) {
+      width: 80vh;
+      height: 80vh;
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      width: 80vw;
+      height: 80vw;
+    }
+
     body:has(div:not([class]):not([id])) & {
-      transform: translateY(20%) scale(.8);
+      transform: translateY(-30%) scale(.5);
+      top: 0;
       
       @media (max-aspect-ratio: 3/2) {
         transform: translateY(-30%) scale(.5);
@@ -22,7 +33,6 @@
       }
 
       @media (max-aspect-ratio: 2/3) {
-        max-width: 80vw;
         transform: translateY(-50%) scale(1);
       }
     }

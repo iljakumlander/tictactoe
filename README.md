@@ -35,8 +35,21 @@ DEPLOY=TRUE
 INSTALL_PATH=/tictactoe
 ```
 
+### Remote play
+To enable remote play a server must be running. Refer to https://github.com/iljakumlander/tictactoe-remote for server code.
+
+Add `.env` file and define deploy path for an environment in case you deploy in server's subdirectory
+```sh
+NEXT_PUBLIC_REMOTE=http://localhost:5000/
+NEXT_PUBLIC_REMOTE_SECURE=TRUE
+NEXT_PUBLIC_REMOTE_TRANSPORTS=websocket
+```
+
 ## Version Log
-### 0.0.6
+### 0.0.8
+Remote module upgraded and if remote server is available, game mode present.
+
+### 0.0.7
 Remote mode! Experimental multiplayer is on production testing stage
 
 ### 0.0.6
@@ -56,7 +69,6 @@ Prompting names, keeping scores and game logic set
 
 ### 0.0.1
 Game components set, winning conditions installed, data persist configured
-
 
 ### 0.0.0
 Development environment with deployable build set on Next 13 and React 18

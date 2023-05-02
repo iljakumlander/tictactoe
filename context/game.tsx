@@ -18,11 +18,15 @@ export interface Game {
     x: number[];
     o: number[];
     turn?: string;
+    move?: number;
     winner?: string;
     line?: number[];
     tie?: boolean;
     leaderboard?: Scores;
     remote?: string;
+    connected?: string;
+    datetime?: number;
+    status?: string;
 };
 
 export interface Action {
@@ -74,10 +78,13 @@ export function GamesReducer (state: Game, action: Action): Game {
         case "New Game":
             return {
                 ...newGame,
+                datetime: action.value as number || Date.now(),
                 starts: state.starts,
                 player: state.starts,
                 names: state.names,
                 remote: state.remote,
+                connected: state.connected,
+                status: state.names[state.starts],
                 leaderboard,
             };
 
@@ -88,6 +95,8 @@ export function GamesReducer (state: Game, action: Action): Game {
                 player: action.value as number,
                 names: state.names,
                 remote: state.remote,
+                connected: state.connected,
+                status: state.names[action.value as number],
                 leaderboard,
             };
 
@@ -95,6 +104,18 @@ export function GamesReducer (state: Game, action: Action): Game {
             return {
                 ...newGame,
                 leaderboard,
+            };
+
+        case "Set Connected":
+            return {
+                ...state,
+                connected: action.value as string,
+            };
+
+        case "Remove Connected":
+            return {
+                ...state,
+                connected: null,
             };
 
         case "Set Remote":
@@ -106,16 +127,27 @@ export function GamesReducer (state: Game, action: Action): Game {
         case "Remove Remote":
             return {
                 ...state,
-                remote: undefined,
+                remote: null,
+            };
+
+        case "Status":
+            return {
+                ...state,
+                status: action.value as string,
             };
 
         case "Set Game":
             return action.value as Game;
 
         case "Set":
+            if (state.x.includes(action.value as number) || state.o.includes(action.value as number)) {
+                return state;
+            }
+
             const intermediate = {
                 ...state,
                 [state.turn === 'X' ? 'x' : 'o']: [...state[state.turn === 'X' ? 'x' : 'o'], action.value as number],
+                move: action.value as number,
             }
             const { x, o, turn, names, player } = intermediate;
 

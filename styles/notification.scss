@@ -8,36 +8,36 @@
     color: #333;
     font-size: 14px;
     line-height: 1.5;
-    margin-bottom: 20px;
     padding: 15px;
-    position: fixed;
     z-index: 1;
-
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -100%);
     background-color: yellow;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    transition: all 100ms ease;
+    transition: all 200ms ease;
     opacity: 0;
 
     &.-ready {
         opacity: .5;
-        transform: translate(-50%, -100%);
         animation: blink 300ms steps(5, start) infinite;
+        height: 0;
     }
 
     &.-set {
         opacity: 1;
-        transform: translate(-50%, -50%);
-        animation: blink 1s steps(5, start) infinite;
+        animation: blink 100ms steps(5, start) infinite;
+        height: 40px;
     }
 
     &.-gone {
         opacity: 0;
-        transform: translate(-50%, -100%);
-        animation: blink 300ms steps(5, start) infinite;
+        height: 0;
+    }
+
+    @media (min-aspect-ratio: 3/2) {
+       width: 200px;
     }
 }

@@ -21,16 +21,26 @@
     padding: 20px 40px;
 
     @media (max-aspect-ratio: 3/2) {
-        min-width: 80vw;
-        min-height: 40vh;
         transform: translate(-50%, 0);
-        bottom: 10%;
+        bottom: 15%;
         top: auto;
-        padding: 0;;
+        padding: 10px 20px;
     }
 
     @media (max-aspect-ratio: 2/3) {
-        min-height: 30vh;
+
         padding: 0;
+    }
+
+    @media (min-aspect-ratio: 4/3) {
+        top: auto;
+        bottom: auto;
+        transform: translate(-50%, -50%);
+    }
+
+    @media (min-width: 768px) {
+        transform: translate(-50%, -50%);
+        min-width: 0;
+        min-height: 0;
     }
 }

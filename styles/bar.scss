@@ -1,0 +1,21 @@
+.bar {
+    display: flex;
+    margin: 20px 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    align-items: baseline;
+    justify-content: space-between;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    * {
+        order: 0;
+    }
+
+    button[type="submit"] {
+        order: 1;
+    }
+}

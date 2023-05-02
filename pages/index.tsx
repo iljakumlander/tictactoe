@@ -1,12 +1,12 @@
 import React from 'react';
+import { config } from '../config';
 import { useGameContext } from '../context/game';
-
 import Layout from '../layouts';
-
 
 export default function Index (): JSX.Element {
     const { state, dispatch } = useGameContext();
-    const { names } = state;
+    const { names, remote } = state;
+    const { host } = config.server;
 
     const reset = () => dispatch({
         type: 'Restart Game',
@@ -15,10 +15,10 @@ export default function Index (): JSX.Element {
     return (
         <Layout title="Knots and crosses">
             <section>
-                <h2>Knots and Crosses!</h2>
+                <h1>Knots and&nbsp;Crosses!</h1>
                 {names && (
                     <p>
-                        <a href={names[1] === '' ? 'single/' : 'local/'}>Continue</a>
+                        <a href={names[1] === '' ? 'single/' : remote ? 'remote/' : 'local/'}>Continue</a>
                     </p>
                 )}
                 <p>
@@ -27,6 +27,11 @@ export default function Index (): JSX.Element {
                 <p>
                     <a onClick={() => reset()} href="local/">2 Players</a>
                 </p>
+                {host && (
+                    <p>
+                        <a onClick={() => reset()} href="remote/">Online</a>
+                    </p>
+                )}
             </section>
         </Layout>
     )

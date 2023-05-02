@@ -1,24 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { useGameContext, positions, combinations } from '../context/game';
+import { useGameContext, positions } from '../context/game';
+import { useNotificationContext, Announce } from '../context/notification';
 
 import Board from './board';
 import Area from './area';
 import Piece from './piece';
 import Notification from './notification';
 
-export default function Game ({ interceptor }: { interceptor?: (area: number) => void }): JSX.Element {
+export default function Game ({ hold }: { hold?: boolean}): JSX.Element {
     const { state, dispatch } = useGameContext();
-    const { x, o, turn, winner, line, tie } = state;
+    const { announcer } = useNotificationContext();
+    const { names, player, x, o, turn, winner, line, tie } = state;
     const board = useRef(null);
     const focus = useRef([]);
     const [lock, setLock] = useState<boolean>(true);
-    const [notifications, setNotifications] = useState<JSX.Element[]>([]);
     const [input, setInput] = useState<string>('none');
 
+    const notify = (message: string) => announcer({
+        type: Announce.New,
+        value: <Notification message={message} expire={Date.now()} />,
+    });
+
     const react = (area: number): void => {
-        if (typeof interceptor === 'function') {
-            interceptor(area);
+        if (hold) {
+            notify('On hold');
 
             return;
         }
@@ -34,8 +40,6 @@ export default function Game ({ interceptor }: { interceptor?: (area: number) =>
             value: area,
         });
     };
-
-    const notify = (message: string) => setNotifications([...notifications, <Notification message={message} expire={Date.now()} />]);
 
     const click = (event: React.MouseEvent, area: number): void => {
         setInput(event.type);
@@ -75,9 +79,24 @@ export default function Game ({ interceptor }: { interceptor?: (area: number) =>
         focus.current[4]?.focus();
     };
 
+    useEffect(() => {
+        if (!names || names[player] === '') {
+            return;
+        }
+
+        notify(`Ready ${names[player]}`);
+    }, [player]);
+
+    useEffect(() => {
+        dispatch({
+            type: 'Status',
+            value: `${player || player === 0 ? names[player] : 'Player not set'}`,
+        });
+        
+    }, [turn]);
+
     return (
         <Board reference={board} turn={turn} winner={winner} focus={focused} input={input}>
-            {notifications.map((notification, index) => <React.Fragment key={index}>{notification}</React.Fragment>)}
             {positions.map((position, index) => (
                 <Area reference={(el) => (focus.current[index] = el)} key={index} position={position} win={line?.includes(index)} onClick={event => click(event, index)} onKeyDown={event => press(event, index)}>
                     <Piece occupied={x.includes(index) && 'X' || o.includes(index) && 'O' || null}  />

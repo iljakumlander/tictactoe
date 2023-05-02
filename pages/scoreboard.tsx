@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { useGameContext, Player } from '../context/game';
 
 import Layout from '../layouts';
-
 
 export default function Scoreboard (): JSX.Element {
     const { state } = useGameContext();
