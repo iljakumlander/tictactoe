@@ -38,7 +38,7 @@ INSTALL_PATH=/tictactoe
 ### Remote play
 To enable remote play a server must be running. Refer to https://github.com/iljakumlander/tictactoe-remote for server code.
 
-Add `.env` file and define deploy path for an environment in case you deploy in server's subdirectory
+Modyfy `.env` to set server configuration:
 ```sh
 NEXT_PUBLIC_REMOTE=http://localhost:5000/
 NEXT_PUBLIC_REMOTE_SECURE=TRUE
