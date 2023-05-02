@@ -32,7 +32,7 @@ npm run build
 Create `.env` file and define deploy path for an environment in case you deploy in server's subdirectory
 ```sh
 DEPLOY=TRUE
-INSTALL_PATH=/tictactoe
+NEXT_PUBLIC_INSTALL_PATH=/tictactoe
 ```
 
 ### Remote play

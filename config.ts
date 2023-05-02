@@ -7,7 +7,7 @@ export const config: {
         opts: Partial<ManagerOptions & SocketOptions>;
     };
 } = {
-    path: process.env.INSTALL_PATH || '',
+    path: process.env.NEXT_PUBLIC_INSTALL_PATH || '',
     server: {
         host: process.env.NEXT_PUBLIC_REMOTE,
         opts: process.env.NODE_ENV === 'production' ? { secure: true, transports: ['websocket'] } : {},
