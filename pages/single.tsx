@@ -41,6 +41,9 @@ export default function Index (): JSX.Element {
                     <p>
                         <button onClick={() => newGame()}>Play again</button>
                     </p>
+                    <p>
+                        <a href="../" className="button">Cancel</a>
+                    </p>
                 </Dialog>
             )}
 
@@ -49,6 +52,9 @@ export default function Index (): JSX.Element {
                     <h2>A Tie!</h2>
                     <p>
                         <button onClick={() => newGame()}>Play again</button>
+                    </p>
+                    <p>
+                        <a href="../" className="button">Cancel</a>
                     </p>
                 </Dialog>
             )}
