@@ -24,7 +24,7 @@ export default function Notification ({ message, expire, reference, children }: 
 
         setVisible(true);
 
-        await delay(3000);
+        await delay(1000);
 
         setVisible(false);
 
